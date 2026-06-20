@@ -1,48 +1,34 @@
 import java.util.Scanner;
 
-class q3{
-    public static void main(String args[]){
+public class q3{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter size of first array: ");
-        int n1 = sc.nextInt();
-        int a[] = new int[n1];
-        System.out.println("Enter elements of first array:");
-        for(int i =0; i<n1; i++){
-            a[i] = sc.nextInt();
+        int n, key;
+        System.out.print("Enter number of elements: ");
+        n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the elements in sorted order:");
+        for (int i=0; i<n; i++){
+            arr[i] =sc.nextInt();
         }
-        System.out.println("Enter size of second array: ");
-        int n2 = sc.nextInt();
-        int b[] = new int[n2];
-        System.out.println("Enter elements of second array:");
-        for(int i =0; i <n2; i++){
-            b[i] = sc.nextInt();
-        }
-        int intermediate[] = new int[Math.min(n1, n2)];
-        int k = 0;
-        for(int i =0; i <n1; i++){
-            boolean foundInB = false;
-            for(int j=0; j <n2; j++){
-                if(a[i] == b[j]){
-                    foundInB = true;
-                    break;
-                }
-            }
-            if(foundInB){
-                boolean alreadyPresent = false;
-                for(int j=0; j <k; j++){
-                    if(intermediate[j] == a[i]){
-                        alreadyPresent = true;
-                        break;
-                    }
-                }
-                if(!alreadyPresent){
-                    intermediate[k++] = a[i];
-                }
+        System.out.print("Enter element to search: ");
+        key =sc.nextInt();
+        int low =0, high =n-1;
+        boolean found =false;
+        while(low<=high){
+            int mid=(low +high)/2;
+            if (arr[mid] == key){
+                System.out.println("Element found at positiom"+(mid+1));
+                found = true;
+                break;
+            } else if(arr[mid]<key){
+                low =mid+1;
+            } else{
+                high =mid-1;
             }
         }
-        System.out.println("Intersection of Arrays:");
-        for(int i = 0; i < k; i++){
-            System.out.print(intermediate[i] + " ");
+        if (!found){
+            System.out.println("Element not found");
         }
     }
 }

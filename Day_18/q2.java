@@ -1,51 +1,30 @@
 import java.util.Scanner;
 
-class q2{
-    public static void main(String args[]){
+public class q2{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter size of 1st array: ");
-        int n1 = sc.nextInt();
-        int a[] = new int[n1];
-        System.out.println("Enter elements of 1st array:");
-        for(int i=0; i<n1; i++) {
-            a[i] = sc.nextInt();
+        int n, temp;
+        System.out.print("Enter number of element: ");
+        n =sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter elements:");
+        for(int i =0; i<n; i++){
+            arr[i] =sc.nextInt();
         }
-        System.out.print("Enter size of 2nd array: ");
-        int n2 = sc.nextInt();
-        int b[] = new int[n2];
-        System.out.println("Enter elements of 2nf array:");
-        for(int i =0; i <n2; i++){
-            b[i] = sc.nextInt();
-        }
-        int union[] = new int[n1+n2];
-        int k = 0;
-        for(int i =0; i <n1; i++){
-            boolean found = false;
-            for(int j =0; j <k; j++){
-                if(a[i] == union[j]){
-                    found = true;
-                    break;
+        for(int i=0; i< n-1;i++){
+            int min = i;
+            for(int j =i+1; j<n; j++){
+                if(arr[j] <arr[min]){
+                    min =j;
                 }
             }
-            if(!found){
-                union[k++] = a[i];
-            }
+            temp =arr[i];
+            arr[i] =arr[min];
+            arr[min] =temp;
         }
-        for(int i = 0; i < n2; i++){
-            boolean found = false;
-            for(int j = 0; j < k; j++){
-                if(b[i] == union[j]){
-                    found = true;
-                    break;
-                }
-            }
-            if(!found){
-                union[k++] = b[i];
-            }
-        }
-        System.out.println("Union of Arrays:");
-        for(int i = 0; i < k; i++){
-            System.out.print(union[i] + " ");
+        System.out.println("Sorted Array:");
+        for(int i=0; i<n; i++){
+            System.out.print(arr[i]+" ");
         }
     }
 }

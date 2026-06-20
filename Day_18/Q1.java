@@ -1,32 +1,28 @@
 import java.util.Scanner;
 
-class q1{
-    public static void main(String args[]){
+public class Q1{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter first array sizw: ");
-        int n1 = sc.nextInt();
-        int a[] = new int[n1];
-        System.out.println("Enter elements of 1st array:");
-        for(int i =0; i< n1; i++){
-            a[i] = sc.nextInt();
+        int n, temp;
+        System.out.print("Enter number ofelements: ");
+        n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
         }
-        System.out.print("Enter size of 2nd array: ");
-        int n2 = sc.nextInt();
-        int b[] = new int[n2];
-        System.out.println("Enter elements of second array:");
-        for(int i=0; i < n2; i++){
-            b[i] = sc.nextInt();
+        for (int i=0;i< n-1; i++) {
+            for(int j =0; j< n-1-i; j++){
+                if(arr[j] >arr[j+1]){
+                    temp =arr[j];
+                    arr[j] =arr[j+1];
+                    arr[j+1] =temp;
+                }
+            }
         }
-        int c[] = new int[n1+n2];
-        for(int i=0; i <n1; i++){
-            c[i] = a[i];
-        }
-        for(int i =0; i <n2; i++){
-            c[n1 + i] = b[i];
-        }
-        System.out.println("Merged Array:");
-        for(int i =0; i <c.length; i++){
-            System.out.print(c[i] + " ");
+        System.out.println("Sorted Array:");
+        for (int i=0; i<n; i++) {
+            System.out.print(arr[i]+" ");
         }
     }
 }
